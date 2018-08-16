@@ -15,7 +15,6 @@ $(IFNOTRECSIM) field(DTYP, "asynFloat64" )
   
   field(INP, "@asyn($(PORT), $(CHAN), 5.0) DATA")
   field(SIOL,"$(DAQMX):$(PORT)$(CHAN):DATA:SIM")
-  field(TPRO, "1")
 }
 
 record(ai, "$(DAQMX):$(PORT)$(CHAN):DATA:SIM"){
