@@ -6,7 +6,11 @@
 
 
 record(ao, "$(DAQMX):$(PORT)$(CHAN):DATA:_RAW"){
-  field(DTYP, "asynFloat64" )
+
+# Records with an AsynFloat data type mess with RECSIM
+$(IFRECSIM) field(DTYP, "Soft channel" )
+$(IFNOTRECSIM) field(DTYP, "asynFloat64" )
+  
   field(OUT, "@asyn($(PORT), $(CHAN), 5.0)DATA")
   field(SIML, "$(DAQMX):SIMULATE")
   field(SIOL, "$(DAQMX):$(PORT)$(CHAN):DATA:SIM PP")

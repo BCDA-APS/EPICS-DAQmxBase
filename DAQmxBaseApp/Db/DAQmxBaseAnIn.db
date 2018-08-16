@@ -9,9 +9,9 @@ record(ai, "$(DAQMX):$(PORT)$(CHAN):DATA:_RAW"){
   field(SCAN,".1 second")
 #  field(SCAN,"5 second")
 
- # Records with an AsynFloat data type mess with RECSIM
-  $(IFRECSIM) field(DTYP, "Soft channel" )
-  $(IFNOTRECSIM) field(DTYP, "asynFloat64" )
+# Records with an AsynFloat data type mess with RECSIM
+$(IFRECSIM) field(DTYP, "Soft channel" )
+$(IFNOTRECSIM) field(DTYP, "asynFloat64" )
   
   field(INP, "@asyn($(PORT), $(CHAN), 5.0) DATA")
   field(SIOL,"$(DAQMX):$(PORT)$(CHAN):DATA:SIM")
