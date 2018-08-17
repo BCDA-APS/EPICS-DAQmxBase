@@ -1,21 +1,15 @@
-# record(calcout, "$(DAQMX):$(PORT)$(CHAN):DATA"){
-#   field(CALC, "A=0?0:$(WVAL)")
-#   field(OUT, "$(DAQMX):$(PORT)$(CHAN):DATA:_RAW")
-#   field(OOPT, "Every Time")
-# }
+record(ao, "$(DAQMX):$(PORT)$(CHAN):DATA:_RAW")
+{
+  # Records with an AsynFloat data type mess with RECSIM
+  $(IFRECSIM) field(DTYP, "Soft Channel" )
+  $(IFNOTRECSIM) field(DTYP, "asynFloat64" )
 
-
-record(ao, "$(DAQMX):$(PORT)$(CHAN):DATA:_RAW"){
-
-# Records with an AsynFloat data type mess with RECSIM
-$(IFRECSIM) field(DTYP, "Soft Channel" )
-$(IFNOTRECSIM) field(DTYP, "asynFloat64" )
-  
   field(OUT, "@asyn($(PORT), $(CHAN), 5.0)DATA")
   field(SIML, "$(DAQMX):SIMULATE")
   field(SIOL, "$(DAQMX):$(PORT)$(CHAN):DATA:SIM PP")
 }
 
-record(ao, "$(DAQMX):$(PORT)$(CHAN):DATA:SIM"){
+record(ao, "$(DAQMX):$(PORT)$(CHAN):DATA:SIM")
+{
     field(DESC, "Output data for RECSIM")
 }
